@@ -1,0 +1,4 @@
+https://github.com/ooni/spec/
+
+look through this for format of data
+can get information from the columns and stuff
