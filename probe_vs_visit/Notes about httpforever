@@ -1,0 +1,17 @@
+I ran a test to http://www.httpforever.com and visited it from my browser to see the differences in the packets sent through my browser and through OONI Probe.
+The two other text files in this directory are the SYN packets my computer sent captured by Wireshark.
+1) Amount of GET requests
+    OONI Probe only makes a single get request to httpforever.com; however, my computer makes followup GET requests for images, css, javascript, etc.
+    Most websites other than the most absolute basic ones will involve followup GET requests for these additional things, so we might be able to identify OONI packets by whether it sends a single GET request for basic HTML or if it sends additional requests for info that most websites would have.
+2) HTTP Header fields
+    (I use firefox)
+    My browser sent a lot more header fields, specifically Accept-Encoding, Connection, Upgrade-Insecure-Requests, and Priority.
+    OONI did not send these, and only sent Host, User-Agent, Accept, and Accept-Language.
+    I think Connection might be relevant here; OONI obviously wouldn't be interested in keeping the connection alive, but my browser is, so my browser would send Connection: keep-alive whereas OONI wouldn't
+    Also, User-Agent had different info; curiously OONI sent: 
+        "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1\r\n"
+    But my computer sent:
+        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0\r\n"
+    I'm on a Windows computer using Firefox, so it's weird why OONI sends it as macOS using Safari. Maybe other people can try with their machines?
+
+The other encapsulated protocols (TCP, IP, Eth) weren't particularly different, but maybe I missed something.
