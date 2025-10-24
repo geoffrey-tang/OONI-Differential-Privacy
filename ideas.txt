@@ -1,0 +1,19 @@
+we are trying to fingerprint users based off something, what information can we use?
+- asn
+- resolver information
+- software name
+- engine version
+- time information across multiple days
+- annotaions->include information about the users device when they ran the probe
+
+we should probably use a combination of various fields
+(we might use one column to get a smaller subset of users and then explore from there)
+
+we need to use later data becausse it has more information in the annotation (user device)
+
+run our own ooni probes and see if we can see we can see who it is
+
+a lot of research cross validates across other datasets and also has information about which users did what
+
+
+
