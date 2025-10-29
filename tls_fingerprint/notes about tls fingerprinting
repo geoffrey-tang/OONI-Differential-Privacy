@@ -59,7 +59,7 @@ Firefox signatures www.swarthmore.edu:
     [JA3 Fullstring: 771,4865-4867-4866-49195-49199-52393-52392-49196-49200-49162-49161-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-34-18-51-43-13-45-28-27-65037,4588-29-23-24-25-256-257,0]
     [JA3: 6f7889b9fb1a62a9577e685c1fcfa919]
 
-Ran another test/visit to www.youtube.com to see if signatures are consistent across sites
+Ran another test/visit to www.youtube.com to see if signatures are consistent across sites (Win11, Firefox)
 OONI signatures to www.youtube.com:
     [JA4: t13d1311h2_f57a46bbacb6_e7c285222651]
     [JA4_r: t13d1311h2_1301,1302,1303,c009,c00a,c013,c014,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0012,0017,002b,0033,ff01_0804,0403,0807,0805,0806,0401,0501,0601,0503,0603,0201,0203]
@@ -71,6 +71,19 @@ Firefox signatures to www.youtube.com:
     [JA3 Fullstring: 771,4865-4867-4866-49195-49199-52393-52392-49196-49200-49162-49161-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-34-18-51-43-13-45-28-27-65037,4588-29-23-24-25-256-257,0]
     [JA3: 6f7889b9fb1a62a9577e685c1fcfa919]
 
-Seems that OONI does generate a consistent signature: adversaries can use this to detect OONI traffic
-Future tests should be to run these tests on different browsers (Chrome and Edge) and OSes (macOS and Linux)
-To tie this back to differential privacy: the dataset should be noisy such that it is impossible to link any one datagram to its corresponding intercepted packet
+Ran another test/visit to www.swarthmore.edu to see differences in Chrome (Win11, Chrome)
+OONI signatures to www.youtube.com:
+    [JA4: t13d1311h2_f57a46bbacb6_e7c285222651]
+    [JA4_r: t13d1311h2_1301,1302,1303,c009,c00a,c013,c014,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0012,0017,002b,0033,ff01_0804,0403,0807,0805,0806,0401,0501,0601,0503,0603,0201,0203]
+    [JA3 Fullstring: 771,49195-49199-49196-49200-52393-52392-49161-49171-49162-49172-4865-4866-4867,0-11-65281-23-18-5-10-13-16-43-51,25497-29-23-24-25,0]
+    [JA3: 50982bb7732015b00f10d5024747686f]
+Chrome signatures to www.youtube.com:
+    [JA4: t13d1516h2_8daaf6152771_d8a2da3f94cd]
+    [JA4_r: t13d1516h2_002f,0035,009c,009d,1301,1302,1303,c013,c014,c02b,c02c,c02f,c030,cca8,cca9_0005,000a,000b,000d,0012,0017,001b,0023,002b,002d,0033,44cd,fe0d,ff01_0403,0804,0401,0503,0805,0501,0806,0601]
+    [JA3 Fullstring: 771,4867-4865-4866-52393-52392-49195-49199-49196-49200-49171-49172-156-157-47-53,27-13-0-23-65037-10-18-16-51-45-35-17613-65281-5-11-43,4588-29-23-24,0]
+    [JA3: 8dcd31786422cf7d2b326f1be23fdfbb]
+
+Seems that OONI does generate a consistent JA4 signature: adversaries can use this to detect OONI traffic, being t13d1311h2_f57a46bbacb6_e7c285222651
+Based on the generated signatures, OONI sends fewer extensions than Chrome and Firefox as well as a shorter cipher suite
+Future tests should be to run these tests on different browsers (Edge, Tor, etc.) and OSes (macOS and Linux)
+To tie this back to differential privacy: the dataset should probably be noisy such that it is impossible to link any one datagram to its corresponding intercepted packet (though I'm not entirely sure how helpful this is; an adversarial ISP might not even need to see the dataset, so maybe we should downgrade our threat model to adversaries with limited or no network access such that they have to use the dataset)
