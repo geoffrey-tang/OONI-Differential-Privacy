@@ -44,6 +44,8 @@
 Update 10/28/2025
 Downloaded JA4+ here: https://github.com/FoxIO-LLC/ja4
 They explain how it works here: https://blog.foxio.io/ja4+-network-fingerprinting
+We can probably also use JA4H for HTTP traffic as well, so we aren't limited to just TLS signatures here
+Also, we can use JA4T for TCP fingerprinting operating systems as well
 
 Ran an OONI probe test to www.swarthmore.edu and visited from my browser (Win11, Firefox)
 OONI signatures to www.swarthmore.edu:
@@ -71,3 +73,4 @@ Firefox signatures to www.youtube.com:
 
 Seems that OONI does generate a consistent signature: adversaries can use this to detect OONI traffic
 Future tests should be to run these tests on different browsers (Chrome and Edge) and OSes (macOS and Linux)
+To tie this back to differential privacy: the dataset should be noisy such that it is impossible to link any one datagram to its corresponding intercepted packet
